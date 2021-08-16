@@ -1,9 +1,12 @@
 package com.xiaoyv.retrofitcache
 
+import com.google.gson.Gson
 import com.xiaoyv.retrofitcache.annotation.CacheModel
 import com.xiaoyv.retrofitcache.api.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * ApiManager
@@ -26,7 +29,8 @@ class ApiManager private constructor() {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://www.mzitu.com/")
-//            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+            .addConverterFactory(GsonConverterFactory.create(Gson()))
             .client(cacheClient)
             .build()
 

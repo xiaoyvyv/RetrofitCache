@@ -49,6 +49,10 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     api 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
+    implementation "com.google.code.gson:gson:2.8.7"
+
+    compileOnly 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
+
     // Room
     implementation "androidx.room:room-runtime:2.3.0"
     annotationProcessor "androidx.room:room-compiler:2.3.0"

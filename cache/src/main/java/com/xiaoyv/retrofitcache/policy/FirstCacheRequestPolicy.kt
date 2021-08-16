@@ -86,6 +86,9 @@ class FirstCacheRequestPolicy : BasePolicy(), Interceptor {
                             responseCallbackField.get(asyncCall) as? Callback ?: return@forEach
 
                         RetrofitCacheUtils.logI("执行策略：${javaClass.simpleName}，请求匹配成功，回调函数查询成功")
+
+                        RetrofitCacheUtils.logI(responseCallback.javaClass.name)
+
                         return itemCall to responseCallback
                     }
                 }
