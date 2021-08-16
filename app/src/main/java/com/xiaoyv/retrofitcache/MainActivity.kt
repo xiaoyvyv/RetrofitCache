@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    println("success")
+                    println("RetrofitCache:success")
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
