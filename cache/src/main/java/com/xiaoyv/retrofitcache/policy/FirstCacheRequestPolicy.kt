@@ -27,8 +27,7 @@ class FirstCacheRequestPolicy : BasePolicy(), Interceptor {
 
         var cacheSuccess = false
 
-        val pairCallBack = queryCallback(request)
-        pairCallBack?.let {
+        queryCallback(request)?.let {
             val call = it.first
             val callback = it.second
             if (cacheResponse != null) {
