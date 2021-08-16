@@ -1,0 +1,41 @@
+package com.xiaoyv.retrofitcache
+
+import com.xiaoyv.retrofitcache.annotation.CacheModel
+import com.xiaoyv.retrofitcache.api.ApiService
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+
+/**
+ * ApiManager
+ *
+ * @author why
+ * @since 2021/08/14
+ **/
+class ApiManager private constructor() {
+    val apiService: ApiService
+
+    init {
+        val httpClient = OkHttpClient.Builder()
+            .build()
+
+        val cacheClient =
+            RetrofitCache.instance.initClient(httpClient, RetrofitCache.GlobalConfig().also {
+                it.cacheMode = CacheModel.FIRST_CACHE_THEN_REQUEST
+                it.cacheTime = 1000 * 600L
+            })
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://www.mzitu.com/")
+//            .addConverterFactory(GsonConverterFactory.create())
+            .client(cacheClient)
+            .build()
+
+        apiService = retrofit.create(ApiService::class.java)
+    }
+
+    companion object {
+        val instance: ApiManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            ApiManager()
+        }
+    }
+}
