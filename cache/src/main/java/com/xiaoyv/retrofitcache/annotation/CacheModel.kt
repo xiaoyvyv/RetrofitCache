@@ -42,6 +42,7 @@ annotation class CacheModel {
         /**
          * 先使用缓存，不管是否存在，仍然请求网络并返回（缓存存在则回调两次）
          */
+        @Deprecated("弃用，无效")
         const val FIRST_CACHE_THEN_REQUEST = 4
     }
 }
